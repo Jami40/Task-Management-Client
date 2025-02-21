@@ -14,6 +14,11 @@ const Register = () => {
         const photo=e.target.photo.value;
         const email=e.target.email.value;
         const password=e.target.password.value;
+        const UsersData = {
+            name,
+            photo,
+            email, 
+        }
         setErrorMessage('');
 
         const passwordPattern=/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
@@ -28,11 +33,17 @@ const Register = () => {
             e.target.reset(); 
             toast.success("Register Succesfully")
             manageProfile(name,photo) 
+            axios.post(`http://localhost:5000/user/email`, UsersData)
+            .then(res => {
+                console.log(res.data);
+                
+            })
         //     const user={email : email}
         //     axios.post(`https://service-review-system-server-flax.vercel.app/jwt`,user, { withCredentials:true })
         //    .then(res=>{
         //     console.log(res.data)
         //   })
+             
             navigate("/")
         })
         .catch(err=>{
@@ -43,14 +54,27 @@ const Register = () => {
     }
     const handleGoogleSign=()=>{
         googleSignIn()
-        .then(result=>{
-          toast.success("Google signIn success")
-          console.log(result.user)
+        .then(result => {
+            toast.success("Google signIn success")
+            console.log(result.user)
+            const data = result.user;
+
+            axios.post(`http://localhost:5000/user/${data?.email}`, {
+                name: data?.displayName,
+                photo: data?.photoURL,
+                email: data?.email,
+            })
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(error => {
+                console.error('Error saving user data:', error);
+            });
             navigate("/")
         })
-        .catch(error=>{
+        .catch(error => {
             console.log(error)
-          toast.error(error.message)
+            toast.error(error.message)
         })
 
     }

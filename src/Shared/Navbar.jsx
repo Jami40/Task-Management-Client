@@ -26,9 +26,8 @@ const Navbar = () => {
         <>
             <li><Link to="/">Home</Link></li>
             
-            <li><Link to="/allTask" className="hover:bg-white/10 rounded-lg transition-all duration-300">All Tasks</Link></li>
-                            <li><Link to="/about" className="hover:bg-white/10 rounded-lg transition-all duration-300">About Us</Link></li>
-                            {user && <li><Link to="/dashboard">Dashboard</Link></li>}
+            
+                            {user && <li><Link to="/allTask" className="hover:bg-white/10 rounded-lg transition-all duration-300">All Tasks</Link></li>}
             <li>
                 <a 
                     href="https://github.com/your-repo-url" 
@@ -64,11 +63,9 @@ const Navbar = () => {
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1 gap-2 text-white font-medium">
                             <li><Link to="/" className="hover:bg-white/10 rounded-lg transition-all duration-300">Home</Link></li>
-                            <li><Link to="/allTask" className="hover:bg-white/10 rounded-lg transition-all duration-300">All Tasks</Link></li>
-                            <li><Link to="/about" className="hover:bg-white/10 rounded-lg transition-all duration-300">About Us</Link></li>
                             {user && (
                                 <>
-                                    <li><Link to="/dashboard" className="hover:bg-white/10 rounded-lg transition-all duration-300">Dashboard</Link></li>
+                                    <li><Link to="/allTask" className="hover:bg-white/10 rounded-lg transition-all duration-300">All Tasks</Link></li>
                                 </>
                             )}
                             <li>
@@ -96,7 +93,7 @@ const Navbar = () => {
                                     </div>
                                 </button> */}
                                 <div className="dropdown dropdown-end">
-                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar ring-2 ring-white/30 hover:ring-white transition-all duration-300">
+                                    <label tabIndex={0} className="btn-circle avatar w-10 h-10 ring-2 ring-white/30 hover:ring-white transition-all duration-300">
                                         <img 
                                             className="w-10 h-10 rounded-full" 
                                             src={user.photoURL} 

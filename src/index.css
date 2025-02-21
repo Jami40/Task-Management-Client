@@ -120,7 +120,7 @@ section {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -135,4 +135,4 @@ section {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondary);
-}
+} */

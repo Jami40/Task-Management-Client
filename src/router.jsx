@@ -4,6 +4,7 @@ import MainLayout from './Layout/MainLayout';
 import Home from './Home/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import AllTask from './Pages/AllTask';
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         {
             path:'register',
             element:<Register></Register>
+        },
+        {
+          path:'allTask',
+          element:<AllTask></AllTask>
         }
       ]
     },

@@ -20,7 +20,7 @@ const Login = () => {
             console.log(result.user)
             e.target.reset();
             navigate(location?.state ? location.state:"/")
-            toast.success("Login succesFully");
+            toast.success("Login succesFully")
         //     const user={email : email}
         //     axios.post(`https://service-review-system-server-flax.vercel.app/jwt`,user, { withCredentials:true })
         //    .then(res=>{
@@ -37,11 +37,26 @@ const Login = () => {
     }
     const handleGoogleSign=()=>{
         googleSignIn()
-        .then(result=>{
-            toast.success("Login succesFully");
+        .then(result => {
+            toast.success("Google signIn success")
+            console.log(result.user)
+            const data = result.user;
+
+            axios.post(`http://localhost:5000/user/${data?.email}`, {
+                name: data?.displayName,
+                photo: data?.photoURL,
+                email: data?.email,
+            })
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(error => {
+                console.error('Error saving user data:', error);
+            });
             navigate("/")
         })
-        .catch(error=>{
+        .catch(error => {
+            console.log(error)
             toast.error(error.message)
         })
 
